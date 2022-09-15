@@ -91,7 +91,7 @@ public class ProductRepositoryTest {
     void testUpdateSuccess() {
         // Update product 1's name, quantity, and version
         Product product = new Product(1, "This is product 1", 100, 5);
-        boolean result  = repository.update(product);
+        boolean result = repository.update(product);
 
         // Validate that our product is returned by update()
         Assertions.assertTrue(result, "The product should have been updated");

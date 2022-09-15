@@ -1,17 +1,5 @@
 package com.globomantics.productservice.web;
 
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.any;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.globomantics.productservice.model.Product;
 import com.globomantics.productservice.service.ProductService;
@@ -26,7 +14,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.util.Optional;
+
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doReturn;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -85,8 +80,8 @@ class ProductControllerTest {
         doReturn(mockProduct).when(service).save(any());
 
         mockMvc.perform(post("/product")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(asJsonString(postProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(postProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isCreated())
@@ -113,9 +108,9 @@ class ProductControllerTest {
         doReturn(true).when(service).update(any());
 
         mockMvc.perform(put("/product/{id}", 1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.IF_MATCH, 1)
-                .content(asJsonString(putProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.IF_MATCH, 1)
+                        .content(asJsonString(putProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isOk())
@@ -142,9 +137,9 @@ class ProductControllerTest {
         doReturn(true).when(service).update(any());
 
         mockMvc.perform(put("/product/{id}", 1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.IF_MATCH, 1)
-                .content(asJsonString(putProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.IF_MATCH, 1)
+                        .content(asJsonString(putProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isConflict());
@@ -158,9 +153,9 @@ class ProductControllerTest {
         doReturn(Optional.empty()).when(service).findById(1);
 
         mockMvc.perform(put("/product/{id}", 1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.IF_MATCH, 1)
-                .content(asJsonString(putProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.IF_MATCH, 1)
+                        .content(asJsonString(putProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isNotFound());

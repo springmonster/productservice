@@ -89,7 +89,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         logger.info("Inserting product into database, generated key is: {}", newId);
 
         // Update the product's ID with the new key
-        product.setId((Integer)newId);
+        product.setId((Integer) newId);
 
         // Return the complete product
         return product;

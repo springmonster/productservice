@@ -26,8 +26,8 @@ public class ProductController {
     /**
      * Returns the product with the specified ID.
      *
-     * @param id    The ID of the product to retrieve.
-     * @return      The product with the specified ID.
+     * @param id The ID of the product to retrieve.
+     * @return The product with the specified ID.
      */
     @GetMapping("/product/{id}")
     public ResponseEntity<?> getProduct(@PathVariable Integer id) {
@@ -40,7 +40,7 @@ public class ProductController {
                                 .eTag(Integer.toString(product.getVersion()))
                                 .location(new URI("/product/" + product.getId()))
                                 .body(product);
-                    } catch (URISyntaxException e ) {
+                    } catch (URISyntaxException e) {
                         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
                     }
                 })
@@ -50,7 +50,7 @@ public class ProductController {
     /**
      * Returns all products in the database.
      *
-     * @return  All products in the database.
+     * @return All products in the database.
      */
     @GetMapping("/products")
     public Iterable<Product> getProducts() {
@@ -59,8 +59,9 @@ public class ProductController {
 
     /**
      * Creates a new product.
-     * @param product   The product to create.
-     * @return          The created product.
+     *
+     * @param product The product to create.
+     * @return The created product.
      */
     @PostMapping("/product")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
@@ -82,13 +83,14 @@ public class ProductController {
 
     /**
      * Updates the fields in the specified product with the specified ID.
-     * @param product   The product field values to update.
-     * @param id        The ID of the product to update.
-     * @param ifMatch   The eTag version of the product.
-     * @return          A ResponseEntity that contains the updated product or one of the following error statuses:
-     *                  NOT_FOUND if there is no product in the database with the specified ID
-     *                  CONFLICT if the eTag does not match the version of the product to update
-     *                  INTERNAL_SERVICE_ERROR if there is a problem creating the location URI
+     *
+     * @param product The product field values to update.
+     * @param id      The ID of the product to update.
+     * @param ifMatch The eTag version of the product.
+     * @return A ResponseEntity that contains the updated product or one of the following error statuses:
+     * NOT_FOUND if there is no product in the database with the specified ID
+     * CONFLICT if the eTag does not match the version of the product to update
+     * INTERNAL_SERVICE_ERROR if there is a problem creating the location URI
      */
     @PutMapping("/product/{id}")
     public ResponseEntity<?> updateProduct(@RequestBody Product product,
@@ -138,11 +140,12 @@ public class ProductController {
 
     /**
      * Deletes the product with the specified ID.
-     * @param id    The ID of the product to delete.
-     * @return      A ResponseEntity with one of the following status codes:
-     *              200 OK if the delete was successful
-     *              404 Not Found if a product with the specified ID is not found
-     *              500 Internal Service Error if an error occurs during deletion
+     *
+     * @param id The ID of the product to delete.
+     * @return A ResponseEntity with one of the following status codes:
+     * 200 OK if the delete was successful
+     * 404 Not Found if a product with the specified ID is not found
+     * 500 Internal Service Error if an error occurs during deletion
      */
     @DeleteMapping("/product/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {

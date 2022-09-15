@@ -83,8 +83,8 @@ class ProductServiceIntegrationTest {
         Product postProduct = new Product("Product Name", 10);
 
         mockMvc.perform(post("/product")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(postProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(postProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isCreated())
@@ -109,9 +109,9 @@ class ProductServiceIntegrationTest {
         Product putProduct = new Product("Product 2 Updated", 10);
 
         mockMvc.perform(put("/product/{id}", 2)
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.IF_MATCH, 2)
-                .content(asJsonString(putProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.IF_MATCH, 2)
+                        .content(asJsonString(putProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isOk())
@@ -136,9 +136,9 @@ class ProductServiceIntegrationTest {
         Product putProduct = new Product("Product Name", 10);
 
         mockMvc.perform(put("/product/{id}", 1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.IF_MATCH, 7)
-                .content(asJsonString(putProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.IF_MATCH, 7)
+                        .content(asJsonString(putProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isConflict());
@@ -152,9 +152,9 @@ class ProductServiceIntegrationTest {
         Product putProduct = new Product("Product Name", 10);
 
         mockMvc.perform(put("/product/{id}", 99)
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.IF_MATCH, 1)
-                .content(asJsonString(putProduct)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.IF_MATCH, 1)
+                        .content(asJsonString(putProduct)))
 
                 // Validate the response code and content type
                 .andExpect(status().isNotFound());
