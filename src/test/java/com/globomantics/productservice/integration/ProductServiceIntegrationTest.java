@@ -22,10 +22,13 @@ import javax.sql.DataSource;
 import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ * 这里使用了mockMvc
+ * 但是对于Database也使用了mock
+ * 对于controller，service都直接调用
+ */
 @ExtendWith({DBUnitExtension.class, SpringExtension.class})
 @SpringBootTest
 @ActiveProfiles("test")
